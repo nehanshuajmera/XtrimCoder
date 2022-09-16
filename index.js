@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(cors({
     origin: [
       "http://localhost:3000",
-      "https://xtrimcoder.herokuapp.com",
+        "https://xtrimcoder.herokuapp.com",
     ],
     credentials: true,
   })
