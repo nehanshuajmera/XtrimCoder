@@ -1,26 +1,39 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require("./routes/user-routes");
+const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-require("dotenv").config();
+dotenv.config();
+// set up server
 const app = express();
-const PORT=process.env.PORT||5000;
-app.use(cors({ credentials: true, origin: PORT }));
-app.use(cookieParser());
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 app.use(express.json());
-app.use("/api", router);
-const URI = process.env.MONGODB_URL;
-
-// to deploy
-    app.use(express.static("build"));
-    const path = require("path");
-    app.get("*",(req,res)=>{
-        res.sendFile(path.resolve('build','index.html'));
-    })
-
-mongoose.connect(    URI  )  .then(() => {
-    app.listen(PORT);
-    console.log("Database is connected! Listening to localhost :",PORT);
+app.use(cookieParser());
+app.use(cors({
+    origin: [
+      "http://localhost:3000",
+      "https://xtrimcoder.herokuapp.com",
+    ],
+    credentials: true,
   })
-  .catch((err) => console.log(err));
+);
+
+// connect to mongoDB
+mongoose.connect(process.env.MDB_CONNECT,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) return console.error(err);
+    console.log("Connected to MongoDB");
+  }
+);
+
+app.use(express.static("build"));
+const path = require("path");
+app.get("*",(req,res)=>{
+    res.sendFile(path.resolve('build','index.html'));
+})
+// set up routes
+app.use("/auth", require("./routers/userRouter"));
