@@ -28,11 +28,12 @@ mongoose.connect(process.env.MDB_CONNECT,{
     console.log("Connected to MongoDB");
   }
 );
+
+// set up routes
+app.use("/auth", require("./routers/userRouter"));
+app.use("/ques", require("./routers/questionRouter"));
 app.use(express.static("build"));
 const path = require("path");
 app.get("*",(req,res)=>{
     res.sendFile(path.resolve('build','index.html'));
 })
-// set up routes
-app.use("/auth", require("./routers/userRouter"));
-app.use("/ques", require("./routers/questionRouter"));
