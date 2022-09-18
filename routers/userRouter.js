@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const jwt_decode=require("jwt-decode")
 // register
 
 router.post("/register", async (req, res) => {
@@ -138,16 +138,19 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
-// router.get("/getusername", (req, res) => {
-//   try {
-//     const token = req.cookies.token;
-//     if (!token) return res.json(false);
-//     jwt.verify(token, process.env.JWT_SECRET);
+router.get("/getusername", async(req, res) => {
 
-//     res.send(true);
-//   } catch (err) {
-//     res.json(false);
-//   }
-// });
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+    jwt.verify(token, process.env.JWT_SECRET);
+    var decoded = jwt_decode(token);
+     const usname= await User.findById(decoded.user);
+    // console.log(usname.name);
+     res.send(usname.name);
+  } catch (err) {
+    res.json(false);
+  }
+});
 
 module.exports = router;
