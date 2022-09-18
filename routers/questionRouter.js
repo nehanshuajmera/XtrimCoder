@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 //Route to add a new post
 router.route("/create").post((req, res) => {
     //Retrieve data for post
-    const { title, body, solution } = req.body;
+    const { title, body, solution, tags } = req.body;
     const date = Date.parse(req.body.date);
     const comments = [];
     //Create a new Post and save it to DB
@@ -24,6 +24,7 @@ router.route("/create").post((req, res) => {
         title,
         body,
         solution,
+        tags,
         date,
         comments,
     });
@@ -42,28 +43,36 @@ router.route("/:id").get((req, res) => {
         .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// // Route to edit a particular post
-// router.route("/edit/:id").post((req, res) => {
-//     Post.findById(req.params.id)
-//         .then((post) => {
-//             post.title = req.body.title;
-//             post.body = req.body.body;
-//             post.author = req.body.author;
-//             post.date = Date.parse(req.body.date);
-//             post.comments = req.body.comments;
+// Route to edit a particular post
+router.route("/edit/:id").post((req, res) => {
+    Question.findById(req.params.id)
+        .then((question) => {
+            question.title = req.body.title;
+            question.body = req.body.body;
+            question.solution = req.body.solution;
+            question.tags=req.body.tags;
+            question.date = Date.parse(req.body.date);
+            question.comments = req.body.comments;
+            question.save()
+                .then(() => res.json("Question Edited"))
+                .catch((err) => res.status(400).json("Error: " + err));
+        })
+        .catch((err) => res.status(400).json("Error: " + err));
+});
 
-//             post.save()
-//                 .then(() => res.json("Post Edited"))
-//                 .catch((err) => res.status(400).json("Error: " + err));
-//         })
-//         .catch((err) => res.status(400).json("Error: " + err));
-// });
+// Route to Delete a route
+router.route("/:id").delete((req, res) => {
+    Question.findByIdAndDelete(req.params.id)
+        .then(() => res.json("Question Deleted"))
+        .catch((err) => res.status(400).json("Error: " + err));
+});
 
-// // Route to Delete a route
-// router.route("/:id").delete((req, res) => {
-//     Post.findByIdAndDelete(req.params.id)
-//         .then(() => res.json("Post Deleted"))
-//         .catch((err) => res.status(400).json("Error: " + err));
-// });
+router.route("/addcomment").post((req, res) => {
+    const { id,comment } = req.body;
+    Question.findOneAndUpdate({_id:id}, {$push: {comments:comment}})
+    .then(() => res.json("Comment Added"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 
 module.exports = router;
