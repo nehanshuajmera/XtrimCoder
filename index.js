@@ -31,6 +31,7 @@ mongoose.connect(process.env.MDB_CONNECT,{
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
 app.use("/ques", require("./routers/questionRouter"));
+app.use("/dis", require("./routers/discussionRouter"));
 
 app.use(express.static("build"));
 const path = require("path");
