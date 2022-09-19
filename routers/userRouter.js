@@ -116,7 +116,7 @@ router.post("/login", async (req, res) => {
       .send();
   } catch (err) {
     console.error(err);
-    res.status(500).send();
+    res.status(500).send(" SUCCESSFUL Logged In");
   }
 });
 
