@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
         errorMessage: "Please enter a password of at least 6 characters.",
       });
 if (phoneno.length !==10)
-      res.status(400).json({
+      res.status(400).send({
         errorMessage: "Please enter a valid Phone Number",
       });
 
