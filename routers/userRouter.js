@@ -10,27 +10,27 @@ router.post("/register", async (req, res) => {
     const { name,email,phoneno , password, passwordVerify } = req.body;
     // validation
     if (!name||!email ||!phoneno ||!password || !passwordVerify)
-      return res
+      res
         .status(400)
         .json({ errorMessage: "Please enter all required fields." });
 
     if (password.length < 6)
-      return res.status(400).json({
+      res.status(400).json({
         errorMessage: "Please enter a password of at least 6 characters.",
       });
 if (phoneno.length !==10)
-      return res.status(400).json({
+      res.status(400).json({
         errorMessage: "Please enter a valid Phone Number",
       });
 
     if (password !== passwordVerify)
-      return res.status(400).json({
+       res.status(400).json({
         errorMessage: "Please enter the same password twice.",
       });
 
     const existingUser = await User.findOne({ email });
     if (existingUser)
-      return res.status(400).json({
+      res.status(400).json({
         errorMessage: "An account with this email already exists.",
       });
 
