@@ -10,27 +10,23 @@ router.post("/register", async (req, res) => {
     const { name,email,phoneno , password, passwordVerify } = req.body;
     // validation
     if (!name||!email ||!phoneno ||!password || !passwordVerify)
-      res
+      return res
         .status(400)
         .json({ errorMessage: "Please enter all required fields." });
 
     if (password.length < 6)
-      res.status(400).json({
+      return res.status(400).json({
         errorMessage: "Please enter a password of at least 6 characters.",
-      });
-if (phoneno.length !==10)
-      res.status(400).send({
-        errorMessage: "Please enter a valid Phone Number",
       });
 
     if (password !== passwordVerify)
-       res.status(400).json({
+      return res.status(400).json({
         errorMessage: "Please enter the same password twice.",
       });
 
     const existingUser = await User.findOne({ email });
     if (existingUser)
-      res.status(400).json({
+      return res.status(400).json({
         errorMessage: "An account with this email already exists.",
       });
 
@@ -70,7 +66,7 @@ if (phoneno.length !==10)
       .send();
   } catch (err) {
     console.error(err);
-    res.status(500).send(" SUCCESSFUL Registered");
+    res.status(500).send("Successfully Registered");
   }
 });
 
@@ -116,7 +112,7 @@ router.post("/login", async (req, res) => {
       .send();
   } catch (err) {
     console.error(err);
-    res.status(500).send(" SUCCESSFUL Logged In");
+    res.status(500).send("Login Succesfull");
   }
 });
 
