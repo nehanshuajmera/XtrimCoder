@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 //Route to add a new post
 router.route("/create").post((req, res) => {
     //Retrieve data for post
-    const { title, body, solution, tags } = req.body;
+    const { title, body, solution, tags,imgurl } = req.body;
     const date = Date.parse(req.body.date);
     const comments = [];
     //Create a new Post and save it to DB
@@ -27,6 +27,7 @@ router.route("/create").post((req, res) => {
         tags,
         date,
         comments,
+        imgurl,
     });
 
     // Save the new post

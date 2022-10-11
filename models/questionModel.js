@@ -7,7 +7,9 @@ const questionSchema = new mongoose.Schema(
   solution: { type: String, required: true },
   tags:{ type: String, required: true },
   date: { type: Date, required: true },
-  comments:[String]
+  comments:[String],
+  imgurl:{type: String, required: true }
+
 },
 {timestamps: true }
 );
