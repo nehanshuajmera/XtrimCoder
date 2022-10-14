@@ -3,6 +3,9 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const jwt_decode=require("jwt-decode")
+const sendMail=require("../MailSender/sendmail")
+var nodemailer = require('nodemailer');
+
 // register
 
 router.post("/register", async (req, res) => {
@@ -127,6 +130,10 @@ router.get("/logout", (req, res) => {
     .send();
 });
 
+
+
+
+
 router.get("/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
@@ -152,5 +159,52 @@ router.get("/getusername", async(req, res) => {
     res.json(false);
   }
 });
+
+function generateOTP() {
+          
+  var digits = '0123456789';
+  let OTP = '';
+  for (let i = 0; i < 4; i++ ) {
+      OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+}
+
+
+router.post("/getotp", async(req, res) => {
+  try {
+    const {email} = req.body;
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'info.xtrimcoder@gmail.com',
+        pass: 'hhzhtswqenmnmmcw'
+      }
+    });
+    var curotp=generateOTP();
+    var mailOptions = {
+      from: 'info.xtrimcoder@gmail.com',
+      to: email,
+      subject: 'OTP',
+      text: `OTP: ${curotp}`
+      // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        res.send(curotp);
+        // console.log('Email sent: ' + info.response);
+      }
+    });
+  } catch (err) {
+    res.json(false);
+  }
+});
+
+
+
+
+
 
 module.exports = router;
