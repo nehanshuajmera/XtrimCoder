@@ -67,6 +67,36 @@ router.post("/register", async (req, res) => {
         sameSite: "none",
       })
       .send();
+    
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'info.xtrimcoder@gmail.com',
+          pass: 'hhzhtswqenmnmmcw'
+        }
+      });
+      var mailOptions = {
+        from: 'info.xtrimcoder@gmail.com',
+        to: email,
+        subject: 'XtrimCoder (Unleash your Extrime Programmer) Registration Successfully',
+        text: `Dear ${name},\n
+Congratulations,Wellcome To Our Family of Extrime's\n
+Your registration was successful!\n
+Thanks, For Giving Us opportunity help you\n
+In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com\n
+Best Regards,\n
+Team XtrimCoder\n`
+        // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          // res.send(true);
+          // console.log('Email sent: ' + info.response);
+        }
+      });
+
   } catch (err) {
     console.error(err);
     res.status(500).send("Successfully Registered");
@@ -185,8 +215,11 @@ router.post("/getotp", async(req, res) => {
     var mailOptions = {
       from: 'info.xtrimcoder@gmail.com',
       to: email,
-      subject: 'OTP',
-      text: `OTP: ${curotp}`
+      subject: 'XtrimCoder (Unleash your Extrime Programmer) OTP',
+      text: `Your verification code for  XtrimCoder (Unleash your Extrime Programmer) is : ${curotp}\n
+In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com\n
+Best Regards,\n
+Team XtrimCoder\n`
       // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
     };
     transporter.sendMail(mailOptions, function(error, info){
