@@ -3,7 +3,6 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const jwt_decode=require("jwt-decode")
-const sendMail=require("../MailSender/sendmail")
 var nodemailer = require('nodemailer');
 
 // register
