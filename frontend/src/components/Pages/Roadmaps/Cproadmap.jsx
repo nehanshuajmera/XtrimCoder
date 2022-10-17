@@ -4,7 +4,7 @@ export default function Cproadmap() {
   return (
     <div style={{color:"black"}}>
       <br/>
-<h1 style={{color:"white",textAlign:"center"}}>Competitive Programming RoadMap</h1>
+<h1 style={{color:"gray",textAlign:"center"}}>Competitive Programming RoadMap</h1>
 <ul className="timeline">
 <br/>
 <li>
