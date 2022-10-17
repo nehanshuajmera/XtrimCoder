@@ -79,12 +79,12 @@ router.post("/register", async (req, res) => {
         to: email,
         subject: 'XtrimCoder (Unleash your Extrime Programmer) Registration Successfully',
         text: `Dear ${name},
-        Congratulations,Wellcome To Our Family of Extrime's
-        Your registration was successful!
-        Thanks, For Giving Us this opportunity to play a crucial role in Your Life
-        In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com
-        Best Regards,
-        Team XtrimCoder`
+Congratulations,Wellcome To Our Family of Extrime's
+Your registration was successful!
+Thanks, For Giving Us this opportunity to play a crucial role in Your Life
+In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com
+Best Regards,
+Team XtrimCoder`
         // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
       };
       transporter.sendMail(mailOptions, function(error, info){
@@ -214,11 +214,11 @@ router.post("/getotp", async(req, res) => {
     var mailOptions = {
       from: 'info.xtrimcoder@gmail.com',
       to: email,
-      subject: 'XtrimCoder (Unleash your Extrime Programmer) One Time Password OTP',
+      subject: 'XtrimCoder (Unleash your Extrime Programmer) One Time Password OTP ',
       text: `Your verification code for  XtrimCoder (Unleash your Extrime Programmer) is : ${curotp}\n
-      In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com\n
-      Best Regards,\n
-      Team XtrimCoder\n `
+In case of any queries, feel free to contact us at info.xtrimcoder@gmail.com\n
+Best Regards,\n
+Team XtrimCoder\n `
       // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
     };
     transporter.sendMail(mailOptions, function(error, info){
