@@ -4,7 +4,7 @@ export default function Mlroadmap() {
   return (
     <div style={{color:"black"}}>
          <br/>
-<h1 style={{color:"white",textAlign:"center"}}>Machine learning RoadMap</h1> 
+<h1 style={{color:"gray",textAlign:"center"}}>Machine learning RoadMap</h1> 
 <ul className="timeline">
 <li>
   <div className="direction-r">
