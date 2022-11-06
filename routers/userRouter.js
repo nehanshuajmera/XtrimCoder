@@ -207,7 +207,7 @@ router.post("/getotp", async(req, res) => {
       service: 'gmail',
       auth: {
         user: 'info.xtrimcoder@gmail.com',
-        pass: 'hhzhtswqenmnmmcw'
+        pass: 'jowxzopzwvpyedce'
       }
     });
     var curotp=generateOTP();
