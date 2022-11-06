@@ -71,7 +71,7 @@ router.post("/register", async (req, res) => {
         service: 'gmail',
         auth: {
           user: 'info.xtrimcoder@gmail.com',
-          pass: 'hhzhtswqenmnmmcw'
+          pass: 'jowxzopzwvpyedce'
         }
       });
       var mailOptions = {
