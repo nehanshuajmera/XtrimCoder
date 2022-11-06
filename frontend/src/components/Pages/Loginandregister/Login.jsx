@@ -4,7 +4,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import AuthContext from '../../../context/AuthContext'
 import DarkmodeContext from '../../../context/DarkmodeContext'
-
+import logo from './test-account.png'
 const Login = () => {
   const { isChecked } = useContext(DarkmodeContext);
     const history = useNavigate()
@@ -43,7 +43,7 @@ const Login = () => {
           <div className="card-body cardbody-color p-lg-5">
 
             <div className="text-center">
-              <img src="https://img.icons8.com/color/344/test-account.png" className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+              <img src={logo} className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                 width="200px" alt="profile"/>
             </div>
             <div className="mb-3">

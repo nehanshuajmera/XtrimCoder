@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import AuthContext from '../../../context/AuthContext'
+import logo from './test-account.png'
 
 const Register = () => {
   const { getLoggedIn } = useContext(AuthContext);
@@ -91,7 +92,7 @@ const Register = () => {
           <div className="card-body cardbody-color p-lg-5">
 
             <div className="text-center">
-              <img src="https://img.icons8.com/color/344/test-account.png" className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+              <img  src={logo} className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                 width="200px" alt="profile"/>
             </div>
             <div className="mb-3">
