@@ -19,15 +19,11 @@ app.use(cors({
   })
 );
 // connect to mongoDB
-mongoose.connect(process.env.MDB_CONNECT,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) return console.error(err);
-    console.log("Connected to MongoDB");
-  }
-);
+
+mongoose.set('strictQuery', false)
+mongoose.connect(process.env.MDB_CONNECT) 
+.then(()=>{console.log('Mongodb connected')})
+.catch((err)=>{console.log("Error in connection",err)});
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
 app.use("/ques", require("./routers/questionRouter"));
