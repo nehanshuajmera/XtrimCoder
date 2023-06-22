@@ -29,7 +29,7 @@ app.use("/auth", require("./routers/userRouter"));
 app.use("/ques", require("./routers/questionRouter"));
 app.use("/dis", require("./routers/discussionRouter"));
 
-
+//hi
 // if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   const path=require("path");
