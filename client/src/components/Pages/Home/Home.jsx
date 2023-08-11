@@ -49,7 +49,7 @@ export default function Home() {
         <Carousel/>
         <Catagory/>
         <Achivers/>
-        {/* <Team/>       */}
+        <Team/>      
     </div>
   )
 }
