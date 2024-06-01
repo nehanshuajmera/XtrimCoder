@@ -27,12 +27,12 @@ export default function Team() {
 						<div className="person-image">
 							<img src={nehanshu}  alt=""/>
 							<span className="icon">
-								<i className="fab fa-html5"></i>
+								<i className="fab fa-node"></i>
 							</span>
 						</div>
 						<div className="person-info">
 							<h3 className="full-name" style={isChecked?{textAlign:"center",color:"black"}:{textAlign:"center"}}>Nehanshu Ajmera</h3>
-							<span className="speciality d-flex justify-content-center">UI/UX Designer</span>
+							<span className="speciality d-flex justify-content-center">Full Stack Developer</span>
 						</div>
 					</div>
 				</div>

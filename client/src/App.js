@@ -10,7 +10,7 @@ import { useContext } from 'react';
 axios.defaults.withCredentials = true;
 
 function App() {
-  key=process.env.REACT_APP_KEY
+  // key=process.env.REACT_APP_KEY
   const { isChecked } = useContext(DarkmodeContext);
   const mystyle = {
     color: "white",
